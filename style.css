@@ -2,46 +2,31 @@
 
 *{
     box-sizing: border-box;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik',sans-serif;
 }
 
 body{
+    background-color: #222;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #222;
+    align-self: center;
 }
 
 .container{
-    width: 100%;
-    margin: 40px;
-    columns: 2;
+    width: 85%;
+    /* border: 1px solid #fff; */
+    columns: 2 100px;
     column-gap: 18px;
+    margin: 40px;
 }
 
 .container .card{
     display: flex;
-    flex-direction: column;
-    /* background-color: #cdcdcd; */
     background-color: #333;
-    padding: 5px 25px;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.card .image{
-    height: 100px;
-}
-
-.card .title{
-    font-size: 20px;
-    font-family: 'Rubik', sans-serif;
-    margin-bottom: -5px;
+    padding: 5px 15px;
 }
 
 .card .description{
+    color:#fff;
     font-family: 'Rubik', sans-serif;
-    font-size: 15px;
-    line-height: 20px;
-    /* letter-spacing: 1px; */
 }
