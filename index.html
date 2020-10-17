@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blog trello</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="card">
-            <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam, labore maiores! Ratione dicta cupiditate dolorem reiciendis cumque fuga rerum ea delectus accusantium similique, illo atque obcaecati laboriosam voluptates? Sint, totam?</p>
-        </div>
+    <div class="blog-title">
+        <h1>Blog Trello</h1>
+    </div>
+    <div class="container" id="blogapp">
+        <post-component></post-component>
     </div>
 </body>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+
+    const { reactive, onMounted } = Vue;
+    const app = Vue.createApp({})
+    app.component('post-component', {
+        template: `
+        <div class="card" v-for="post in state.posts">
+            <p class="title">{{post.name}}</p>
+            <p class="description">{{post.desc}}</p>
+        </div>
+        `,
+        setup() {
+            const state = reactive({
+                posts: []
+            })
+            onMounted(() => {
+                // fungsi untuk memanggil api
+                getCardTrello();
+            });
+
+            const getCardTrello = async () => {
+                const idList_Card_Trello = '5f8ad0642d880e826064b9a1';
+                const Response = await fetch('https://trello.com/b/fgnRYaKZ/blog-trello.json');
+                const json = await Response.json();
+                const cardList = await json.cards.filter(card => {
+                    return card.idList == idList_Card_Trello
+                })
+                console.log(cardList);
+                state.posts = cardList;
+            }
+            return { state }
+        }   
+    })
+    app.mount('#blogapp')
+</script>
+
 </html>
