@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:300;400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
 
 *{
     box-sizing: border-box;
@@ -35,6 +35,19 @@ body{
     margin-bottom: 20px;
 }
 
+.container .card:hover{
+    display: flex;
+    flex-direction: column;
+    background-color: #e91e63 ;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+}
+
+.card .cover{
+    width: 100%;
+    object-fit: cover;
+    margin-top: 10px;
+}
 .card .description{
     color:#fff;
     font-family: 'Rubik', sans-serif;
