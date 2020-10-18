@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+4<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,6 +25,7 @@
     app.component('post-component', {
         template: `
         <div class="card" v-for="post in state.posts">
+            <img class="cover" v-if="post.attachments.length" :src="post.attachments[0].url"></img>
             <p class="title">{{post.name}}</p>
             <p class="description">{{post.desc}}</p>
         </div>
@@ -45,7 +46,6 @@
                 const cardList = await json.cards.filter(card => {
                     return card.idList == idList_Card_Trello
                 })
-                console.log(cardList);
                 state.posts = cardList;
             }
             return { state }
