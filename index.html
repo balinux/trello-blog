@@ -25,7 +25,6 @@
     app.component('post-component', {
         template: `
         <div class="card" v-for="post in state.posts">
-            <img class="cover" v-if="post.attachments.length" :src="post.attachments[0].url"></img>
             <p class="title">{{post.name}}</p>
             <p class="description">{{post.desc}}</p>
         </div>
@@ -40,12 +39,14 @@
             });
 
             const getCardTrello = async () => {
-                const idList_Card_Trello = '5f8ad0642d880e826064b9a1';
+                const idList_Card_Trello = '601cf6fb17a84557e041372c';
                 const Response = await fetch('https://trello.com/b/fgnRYaKZ/blog-trello.json');
                 const json = await Response.json();
+                console.log(json.cards);
                 const cardList = await json.cards.filter(card => {
                     return card.idList == idList_Card_Trello
                 })
+                console.log(cardList);
                 state.posts = cardList;
             }
             return { state }
